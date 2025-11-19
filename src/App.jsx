@@ -88,11 +88,28 @@ function App() {
     setBaseTime(zoned.getHours() * 60 + zoned.getMinutes());
   };
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0 }
+  };
+
   return (
     <Layout hour={getDisplayHour()} theme={theme}>
       <header style={{ marginBottom: '3rem', textAlign: 'center', position: 'relative' }}>
         <div className="header-controls">
-          <button
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
             onClick={() => setIsHelpOpen(true)}
             className="glass-panel"
             style={{
@@ -107,8 +124,10 @@ function App() {
             aria-label="Help"
           >
             <HelpCircle size={20} />
-          </button>
-          <button
+          </motion.button>
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
             onClick={toggleTheme}
             className="glass-panel"
             style={{
@@ -123,35 +142,49 @@ function App() {
             aria-label="Toggle theme"
           >
             {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
-          </button>
+          </motion.button>
         </div>
 
-        <h1 className="text-gradient" style={{
-          fontSize: '3rem',
-          fontWeight: '800',
-          marginBottom: '0.5rem',
-          letterSpacing: '-0.05em'
-        }}>
-          Time Zone Sync
-        </h1>
-        <p style={{ opacity: 0.8, fontSize: '1.3rem' }}>
-          Welcome to Time Zone Sync! This tool helps you coordinate times across different time zones effortlessly for your meetings.
-        </p>
-        <p style={{ opacity: 0.8, fontSize: '1.5rem' }}>
-          &nbsp;
-        </p>
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <h1 className="text-gradient" style={{
+            fontSize: '3rem',
+            fontWeight: '800',
+            marginBottom: '0.5rem',
+            letterSpacing: '-0.05em'
+          }}>
+            Time Zone Sync
+          </h1>
+          <p style={{ opacity: 0.8, fontSize: '1.3rem' }}>
+            Welcome to Time Zone Sync! This tool helps you coordinate times across different time zones effortlessly for your meetings.
+          </p>
+          <p style={{ opacity: 0.8, fontSize: '1.5rem' }}>
+            &nbsp;
+          </p>
 
-        <p style={{ opacity: 0.8, fontSize: '1.1rem' }}>
-          Base Time: <span style={{ fontWeight: 'bold' }}>{homeCityName}</span>
-        </p>
+          <p style={{ opacity: 0.8, fontSize: '1.1rem' }}>
+            Base Time: <span style={{ fontWeight: 'bold' }}>{homeCityName}</span>
+          </p>
+        </motion.div>
       </header>
 
-      <TimeSlider value={baseTime} onChange={setBaseTime} homeCity={homeCityName} />
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+      >
+        <TimeSlider value={baseTime} onChange={setBaseTime} homeCity={homeCityName} />
+      </motion.div>
 
       <div style={{ marginBottom: '2rem' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
           <h2 style={{ fontSize: '1.5rem', fontWeight: '600' }}>Active Time Zones</h2>
-          <button
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
             onClick={() => setIsModalOpen(true)}
             className="glass-panel"
             style={{
@@ -166,24 +199,30 @@ function App() {
             }}
           >
             <Plus size={18} /> Add City
-          </button>
+          </motion.button>
         </div>
 
-        <div style={{ display: 'grid', gap: '1rem', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))' }}>
-          <AnimatePresence>
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate="show"
+          style={{ display: 'grid', gap: '1rem', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))' }}
+        >
+          <AnimatePresence mode='popLayout'>
             {cities.map(city => (
-              <CityCard
-                key={city.name}
-                city={city}
-                baseTimeMinutes={baseTime}
-                homeTimezone={homeTimezone}
-                isHome={city.timezone === homeTimezone}
-                onSetHome={() => handleSetHome(city)}
-                onRemove={() => handleRemoveCity(city.name)}
-              />
+              <motion.div key={city.name} variants={itemVariants} layout style={{ height: '100%' }}>
+                <CityCard
+                  city={city}
+                  baseTimeMinutes={baseTime}
+                  homeTimezone={homeTimezone}
+                  isHome={city.timezone === homeTimezone}
+                  onSetHome={() => handleSetHome(city)}
+                  onRemove={() => handleRemoveCity(city.name)}
+                />
+              </motion.div>
             ))}
           </AnimatePresence>
-        </div>
+        </motion.div>
       </div>
 
       <AddCityModal

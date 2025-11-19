@@ -35,8 +35,11 @@ const CityCard = ({ city, baseTimeMinutes, homeTimezone, onRemove, isHome, onSet
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.9 }}
+            whileHover={{ scale: 1.02, backgroundColor: 'rgba(255,255,255,0.1)' }}
+            transition={{ type: 'spring', stiffness: 300, damping: 30 }}
             className="glass-panel"
             style={{
+                height: '100%',
                 padding: '1.5rem',
                 borderRadius: 'var(--radius-md)',
                 background: isBusinessHours ? 'rgba(255, 255, 255, 0.15)' : 'rgba(0, 0, 0, 0.2)',

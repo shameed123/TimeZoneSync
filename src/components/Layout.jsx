@@ -32,7 +32,44 @@ const Layout = ({ children, hour, theme }) => {
         padding: '2rem 0'
       }}
     >
-      <div className="container">
+      <div style={{
+        position: 'absolute',
+        inset: 0,
+        overflow: 'hidden',
+        pointerEvents: 'none',
+        zIndex: 0
+      }}>
+        {[...Array(3)].map((_, i) => (
+          <motion.div
+            key={i}
+            animate={{
+              y: [0, -20, 0],
+              x: [0, 10, 0],
+              scale: [1, 1.1, 1],
+              opacity: [0.3, 0.5, 0.3]
+            }}
+            transition={{
+              duration: 5 + i * 2,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+            style={{
+              position: 'absolute',
+              top: `${20 + i * 30}%`,
+              left: `${10 + i * 40}%`,
+              width: '300px',
+              height: '300px',
+              borderRadius: '50%',
+              background: theme === 'light'
+                ? 'radial-gradient(circle, rgba(99,102,241,0.1) 0%, rgba(255,255,255,0) 70%)'
+                : 'radial-gradient(circle, rgba(99,102,241,0.15) 0%, rgba(15,23,42,0) 70%)',
+              filter: 'blur(40px)',
+            }}
+          />
+        ))}
+      </div>
+
+      <div className="container" style={{ position: 'relative', zIndex: 1 }}>
         {children}
       </div>
     </motion.div>
