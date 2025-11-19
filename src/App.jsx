@@ -166,7 +166,7 @@ function App() {
           </p>
 
           <p style={{ opacity: 0.8, fontSize: '1.1rem' }}>
-            Base Time: <span style={{ fontWeight: 'bold' }}>{homeCityName}</span>
+            Home Time: <span style={{ fontWeight: 'bold' }}>{homeCityName}</span>
           </p>
         </motion.div>
       </header>
