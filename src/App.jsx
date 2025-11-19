@@ -168,13 +168,6 @@ function App() {
           <p style={{ opacity: 0.8, fontSize: '1.3rem' }}>
             Welcome to Time Zone Sync! This tool helps you coordinate times across different time zones effortlessly for your meetings.
           </p>
-          <p style={{ opacity: 0.8, fontSize: '1.5rem' }}>
-            &nbsp;
-          </p>
-
-          <p style={{ opacity: 0.8, fontSize: '1.1rem' }}>
-            Home Time: <span style={{ fontWeight: 'bold' }}>{homeCityName}</span>
-          </p>
         </motion.div>
       </header>
 
