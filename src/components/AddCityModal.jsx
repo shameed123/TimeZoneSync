@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, X, Plus } from 'lucide-react';
+import { Search, X } from 'lucide-react';
 
 const POPULAR_CITIES = [
     { name: 'New York', timezone: 'America/New_York', region: 'USA' },
@@ -109,40 +109,39 @@ const AddCityModal = ({ isOpen, onClose, onAdd, theme }) => {
     return (
         <AnimatePresence>
             {isOpen && (
-                <>
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    onClick={onClose}
+                    style={{
+                        position: 'fixed',
+                        inset: 0,
+                        background: 'rgba(0,0,0,0.5)',
+                        backdropFilter: 'blur(4px)',
+                        zIndex: 50,
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center'
+                    }}
+                >
                     <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        onClick={onClose}
-                        style={{
-                            position: 'fixed',
-                            inset: 0,
-                            background: 'rgba(0,0,0,0.5)',
-                            backdropFilter: 'blur(4px)',
-                            zIndex: 50
-                        }}
-                    />
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                        animate={{ opacity: 1, scale: 1, y: 0 }}
-                        exit={{ opacity: 0, scale: 0.9, y: 20 }}
+                        initial={{ scale: 0.9, y: 20 }}
+                        animate={{ scale: 1, y: 0 }}
+                        exit={{ scale: 0.9, y: 20 }}
+                        onClick={(e) => e.stopPropagation()}
                         className="glass-panel"
                         style={{
-                            position: 'fixed',
-                            top: '50%',
-                            left: '50%',
-                            transform: 'translate(-50%, -50%)',
                             width: '90%',
                             maxWidth: '500px',
                             background: bgColor,
                             color: textColor,
                             padding: '1.5rem',
                             borderRadius: 'var(--radius-lg)',
-                            zIndex: 51,
                             maxHeight: '80vh',
                             display: 'flex',
-                            flexDirection: 'column'
+                            flexDirection: 'column',
+                            position: 'relative'
                         }}
                     >
                         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1rem' }}>
@@ -323,7 +322,7 @@ const AddCityModal = ({ isOpen, onClose, onAdd, theme }) => {
                             </div>
                         )}
                     </motion.div>
-                </>
+                </motion.div>
             )}
         </AnimatePresence>
     );
