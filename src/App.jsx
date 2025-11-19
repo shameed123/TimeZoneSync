@@ -91,13 +91,7 @@ function App() {
   return (
     <Layout hour={getDisplayHour()} theme={theme}>
       <header style={{ marginBottom: '3rem', textAlign: 'center', position: 'relative' }}>
-        <div style={{
-          position: 'absolute',
-          top: 0,
-          right: 0,
-          display: 'flex',
-          gap: '0.5rem'
-        }}>
+        <div className="header-controls">
           <button
             onClick={() => setIsHelpOpen(true)}
             className="glass-panel"
@@ -140,6 +134,13 @@ function App() {
         }}>
           Time Zone Sync
         </h1>
+        <p style={{ opacity: 0.8, fontSize: '1.3rem' }}>
+          Welcome to Time Zone Sync! This tool helps you coordinate times across different time zones effortlessly for your meetings.
+        </p>
+        <p style={{ opacity: 0.8, fontSize: '1.5rem' }}>
+          &nbsp;
+        </p>
+
         <p style={{ opacity: 0.8, fontSize: '1.1rem' }}>
           Base Time: <span style={{ fontWeight: 'bold' }}>{homeCityName}</span>
         </p>

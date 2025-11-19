@@ -177,3 +177,37 @@ input[type=range]::-moz-range-thumb:hover {
   transform: scale(1.1);
   box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
 }
+
+/* City Card Header Layout */
+.city-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+@media (max-width: 768px) {
+  .city-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+}
+
+/* Header Controls Layout */
+.header-controls {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  gap: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .header-controls {
+    position: relative;
+    justify-content: flex-end;
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+}

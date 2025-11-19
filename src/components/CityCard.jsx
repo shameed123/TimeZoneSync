@@ -60,7 +60,7 @@ const CityCard = ({ city, baseTimeMinutes, homeTimezone, onRemove, isHome, onSet
                 }} />
             )}
             <div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.25rem' }}>
+                <div className="city-header">
                     <h3 style={{ fontSize: '1.25rem', fontWeight: '600' }}>{city.name}</h3>
                     <span style={{
                         fontSize: '0.75rem',
