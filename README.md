@@ -1,16 +1,51 @@
-# React + Vite
+# Time Zone Sync
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, interactive web application for coordinating times across multiple time zones. Built with React and Vite, featuring a beautiful glassmorphism UI and smooth animations.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Visual Time Synchronization**: Use an interactive slider to see how time changes across all your selected cities simultaneously.
+- **Home City Management**: Set a "Home" city as your reference point. All other times are calculated relative to this base.
+- **Customizable City List**: Add cities from around the world or define custom locations.
+- **Persistent Settings**: Your cities, home selection, and theme preferences are saved automatically.
+- **Dark/Light Mode**: Toggle between a sleek dark mode and a clean light mode.
+- **Responsive Design**: Works seamlessly on desktop and mobile devices.
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Frontend Framework**: [React](https://react.dev/)
+- **Build Tool**: [Vite](https://vitejs.dev/)
+- **Styling**: Vanilla CSS with Glassmorphism effects
+- **Animations**: [Framer Motion](https://www.framer.com/motion/)
+- **Icons**: [Lucide React](https://lucide.dev/)
+- **Date/Time Handling**: [date-fns](https://date-fns.org/) & [date-fns-tz](https://github.com/marnusw/date-fns-tz)
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Prerequisites
+
+- Node.js (v14 or higher recommended)
+- npm or yarn
+
+### Installation
+
+1. Clone the repository (if applicable) or navigate to the project directory.
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
+
+4. Open your browser and visit `http://localhost:5173` (or the URL shown in your terminal).
+
+## Usage
+
+1. **Add a City**: Click the "Add City" button to search for a city or add a custom one.
+2. **Set Home City**: Click the "Make Home" button on any city card to set it as your primary reference time.
+3. **Check Times**: Drag the slider at the top to change the time in your home city and watch all other cities update instantly.
+4. **Remove City**: Click the "X" on a city card to remove it from your list.
