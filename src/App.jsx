@@ -150,14 +150,21 @@ function App() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h1 className="text-gradient" style={{
-            fontSize: '3rem',
-            fontWeight: '800',
-            marginBottom: '0.5rem',
-            letterSpacing: '-0.05em'
-          }}>
-            Time Zone Sync
-          </h1>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem', marginBottom: '0.5rem' }}>
+            <img
+              src="/images/android-chrome-192x192.png"
+              alt="Logo"
+              style={{ width: '120px', height: '120px', borderRadius: '15px' }}
+            />
+            <h1 className="text-gradient" style={{
+              fontSize: '3rem',
+              fontWeight: '800',
+              letterSpacing: '-0.05em',
+              margin: 0
+            }}>
+              Time Zone Sync
+            </h1>
+          </div>
           <p style={{ opacity: 0.8, fontSize: '1.3rem' }}>
             Welcome to Time Zone Sync! This tool helps you coordinate times across different time zones effortlessly for your meetings.
           </p>
