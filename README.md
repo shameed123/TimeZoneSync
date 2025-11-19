@@ -1,5 +1,7 @@
 # Time Zone Sync
 
+**by Sohail Hameed**
+
 A modern, interactive web application for coordinating times across multiple time zones. Built with React and Vite, featuring a beautiful glassmorphism UI and smooth animations.
 
 ## Features
