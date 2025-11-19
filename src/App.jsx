@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Plus, Sun, Moon } from 'lucide-react';
+import { Plus, Sun, Moon, HelpCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { toZonedTime } from 'date-fns-tz';
 import Layout from './components/Layout';
 import TimeSlider from './components/TimeSlider';
 import CityCard from './components/CityCard';
 import AddCityModal from './components/AddCityModal';
+import HelpModal from './components/HelpModal';
 
 function App() {
   const [homeTimezone, setHomeTimezone] = useState(() => localStorage.getItem('homeTimezone') || 'America/Chicago');
@@ -19,6 +20,7 @@ function App() {
   });
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isHelpOpen, setIsHelpOpen] = useState(false);
   const [theme, setTheme] = useState(() => localStorage.getItem('theme') || 'light');
 
   const [cities, setCities] = useState(() => {
@@ -89,25 +91,46 @@ function App() {
   return (
     <Layout hour={getDisplayHour()} theme={theme}>
       <header style={{ marginBottom: '3rem', textAlign: 'center', position: 'relative' }}>
-        <button
-          onClick={toggleTheme}
-          className="glass-panel"
-          style={{
-            position: 'absolute',
-            top: 0,
-            right: 0,
-            padding: '0.5rem',
-            borderRadius: '50%',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            background: 'rgba(255,255,255,0.2)',
-            color: 'inherit'
-          }}
-          aria-label="Toggle theme"
-        >
-          {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
-        </button>
+        <div style={{
+          position: 'absolute',
+          top: 0,
+          right: 0,
+          display: 'flex',
+          gap: '0.5rem'
+        }}>
+          <button
+            onClick={() => setIsHelpOpen(true)}
+            className="glass-panel"
+            style={{
+              padding: '0.5rem',
+              borderRadius: '50%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              background: 'rgba(255,255,255,0.2)',
+              color: 'inherit'
+            }}
+            aria-label="Help"
+          >
+            <HelpCircle size={20} />
+          </button>
+          <button
+            onClick={toggleTheme}
+            className="glass-panel"
+            style={{
+              padding: '0.5rem',
+              borderRadius: '50%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              background: 'rgba(255,255,255,0.2)',
+              color: 'inherit'
+            }}
+            aria-label="Toggle theme"
+          >
+            {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
+          </button>
+        </div>
 
         <h1 className="text-gradient" style={{
           fontSize: '3rem',
@@ -166,6 +189,12 @@ function App() {
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         onAdd={handleAddCity}
+        theme={theme}
+      />
+
+      <HelpModal
+        isOpen={isHelpOpen}
+        onClose={() => setIsHelpOpen(false)}
         theme={theme}
       />
     </Layout>
